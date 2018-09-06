@@ -96,6 +96,13 @@ function isEdible(ghost) {
   }
 }
 
+setTimeout(function() {
+  ghosts.forEach(function(ghost) {
+    ghost.edible = false;
+  });
+}, 8000);
+
+
 
 // Menu Options
 function eatDot() {
