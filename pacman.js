@@ -70,7 +70,7 @@ function displayMenu() {
     console.log('(p) Eat Power Pellet');
   }
   for (var i = 0; i < ghosts.length; i++) {
-    console.log("(" + (i + 1) + ") Eat " + ghosts[i].name);
+    console.log("(" + (i + 1) + ") Eat " + ghosts[i].name) + " (" +isEdible(ghosts[i]) + ")";
   }
   console.log('(q) Quit');
 }
@@ -88,6 +88,14 @@ function eatPowerPellet() {
   powerPellets -= 1;
 }
 
+function isEdible(ghost) {
+  if(ghost.edible === false) {
+    return 'inedible';
+  } else {
+    return 'edible';
+  }
+}
+
 
 // Menu Options
 function eatDot() {
@@ -99,8 +107,11 @@ function eatGhost(ghost) {
   if (ghosts[ghost-1]) {
     if (ghosts[ghost-1].edible === false) {
       lives -= 1;
-      console.log("\n" + ghosts[ghost-1].name + "that has the colour " + ghosts[ghost-1].colour + " is not edible!");
+      console.log("\n" + ghosts[ghost-1].name + " that has the colour " + ghosts[ghost-1].colour + " is not edible!");
       gameOver(lives);
+    } else {
+      score += 200;
+      console.log("\nPacman just ate " + ghosts[ghost-1].name + " and is " + ghosts[ghost-1].character + "!");
     }
   }
 }
