@@ -78,6 +78,22 @@ function eatDot() {
   score += 10;
 }
 
+function eatGhost(ghost) {
+  if (ghosts[ghost-1]) {
+    if (ghosts[ghost-1].edible === false) {
+      lives -= 1;
+      console.log("\n" + ghosts[ghost-1].name + "that has the colour " + ghosts[ghost-1].colour + " is not edible!");
+      gameOver(lives);
+    }
+  }
+}
+
+function gameOver(lives) {
+  if (lives < 0) {
+    process.exit();
+  }
+}
+
 
 // Process Player's Input
 function processInput(key) {
@@ -88,6 +104,22 @@ function processInput(key) {
       break;
     case 'd':
       eatDot();
+      break;
+    case '1':
+      eatGhost(1);
+      gameOver();
+      break;
+    case '2':
+      eatGhost(2);
+      gameOver();
+      break;
+      case '3':
+      eatGhost(3);
+      gameOver();
+      break;
+      case '4':
+      eatGhost(4);
+      gameOver();
       break;
     default:
       console.log('\nInvalid Command!');
